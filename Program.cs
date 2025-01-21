@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq.Expressions;
 
 namespace compare_algorithm
 {
@@ -8,23 +9,58 @@ namespace compare_algorithm
         {
             Random n = new Random();
             Stopwatch sw = new Stopwatch();
-
-
+            Console.WriteLine("Enter an array size");
+            int arraysize = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter a max item size");
+            int maxitemsize = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter a min item size");
+            int minitemsize = Convert.ToInt32(Console.ReadLine());
+            int[] thisarray = CreateArray(arraysize,n, minitemsize, maxitemsize );
+            while (true) {
+                menu();
+                         }
         }
-        static int[] CreateArray(int size, Random r)
+        static int[] CreateArray(int size, Random r, int min, int max)
         {
-            
+            int[] array = new int[size];
+            for (int i = 0; i < size; i++) 
+            { 
+             array[i] = r.Next(min, max);
+            }
+            return array;
         }
+
         static void menu()
         {
 
         }
         
-        static void BubbleSort(int[] a)
+        static int[] BubbleSort(int[] a)
         {
             
+            int x = 0;
+            bool swaps = false;
+            int count = 0;
+            
+            do
+            {
+                swaps = false;
+                for (int i = 0; i < a.Length - 1; i++)
+                {
+                    if (a[i] > a[i + 1])
+                    {
+                        x = a[i];
+                        a[i] = a[i + 1];
+                        a[i + 1] = x;
+                        swaps = true;
+                    }
+                    count++;
+                }
+            } while (swaps);
+            
+            return a;
         }
-        static void Merge(int[] a, int low, int mid, int high)
+        static int[] Merge(int[] a, int low, int mid, int high)
         {
             int i, j, k;
             int num1 = mid - low + 1;
@@ -67,16 +103,21 @@ namespace compare_algorithm
                 a[k] = R[j];
                 j++; k++;
             }
+            return a;
         }
-        static void MergeSortRecursive(int[] a, int low, int high)
+        static int[] MergeSortRecursive(int[] a, int low, int high)
         {
+            int[] answer = new int[high + 1];
             if (low < high)
             {
+                
                 int mid = (low + high) / 2;
                 MergeSortRecursive(a, low, mid);
                 MergeSortRecursive(a, mid + 1, high);
-                Merge(a, low, mid, high);
+                answer = Merge(a, low, mid, high);
             }
+            return answer;
+                
         }
         static bool LinearSearch(int[] a, int numToFind)
         {
