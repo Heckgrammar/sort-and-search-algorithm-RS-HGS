@@ -1,11 +1,10 @@
 ﻿using System.Diagnostics;
-using System.Linq.Expressions;
 
 namespace compare_algorithm
 {
     internal class Program
     {
-        
+
         static void Main(string[] args)
         {
             Random n = new Random();
@@ -16,17 +15,18 @@ namespace compare_algorithm
             int maxitemsize = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter a min item size");
             int minitemsize = Convert.ToInt32(Console.ReadLine());
-            int[] thisarray = CreateArray(arraysize,n, minitemsize, maxitemsize );
-            while (true) {
+            int[] thisarray = CreateArray(arraysize, n, minitemsize, maxitemsize);
+            while (true)
+            {
                 menu(thisarray);
-                         }
+            }
         }
         static int[] CreateArray(int size, Random r, int min, int max)
         {
             int[] array = new int[size];
-            for (int i = 0; i < size; i++) 
-            { 
-             array[i] = r.Next(min, max);
+            for (int i = 0; i < size; i++)
+            {
+                array[i] = r.Next(min, max);
             }
             return array;
         }
@@ -51,7 +51,7 @@ namespace compare_algorithm
                 case 2:
                     Console.WriteLine("Enter a number to search for");
                     int binarysearchindex = BinarySearch(arr, Convert.ToInt32(Console.ReadLine()));
-                     Console.WriteLine(binarysearchindex); 
+                    Console.WriteLine(binarysearchindex);
                     Console.WriteLine("It was found at this index");
 
 
@@ -60,7 +60,7 @@ namespace compare_algorithm
                 case 4:
                     int[] mergesorted = MergeSortRecursive(arr, 0, arr.Length - 1);
                     foreach (int index in mergesorted)
-                       { Console.WriteLine(index); }
+                    { Console.WriteLine(index); }
                     Console.WriteLine("The array has been sorted");
                     break;
                 case 3:
@@ -72,17 +72,17 @@ namespace compare_algorithm
                 case 9:
                     Environment.Exit(0);
                     break;
-                   
+
             }
         }
-        
+
         static int[] BubbleSort(int[] a)
         {
-            
+
             int x = 0;
             bool swaps = false;
             int count = 0;
-            
+
             do
             {
                 swaps = false;
@@ -98,7 +98,7 @@ namespace compare_algorithm
                     count++;
                 }
             } while (swaps);
-            
+
             return a;
         }
         static int[] Merge(int[] a, int low, int mid, int high)
@@ -151,14 +151,14 @@ namespace compare_algorithm
             int[] answer = new int[high + 1];
             if (low < high)
             {
-                
+
                 int mid = (low + high) / 2;
                 MergeSortRecursive(a, low, mid);
                 MergeSortRecursive(a, mid + 1, high);
                 answer = Merge(a, low, mid, high);
             }
             return answer;
-                
+
         }
         static int[] LinearSearch(int[] a, int numToFind)
         {
@@ -176,7 +176,7 @@ namespace compare_algorithm
             {
                 if (a[i] == numToFind)
                 {
-                    answer[j] =i;
+                    answer[j] = i;
                     j++;
                 }
             }
@@ -186,7 +186,7 @@ namespace compare_algorithm
         static int BinarySearch(int[] a, int numToFind)
         {
             {
-                
+
                 int ub = a.Length - 1;
                 int lb = 0;
                 while (lb < ub)
@@ -206,7 +206,7 @@ namespace compare_algorithm
                         ub = mp - 1;
                         mp = (lb + ub) / 2; ;
                     }
-                    
+
                 }
                 return -1;
 
