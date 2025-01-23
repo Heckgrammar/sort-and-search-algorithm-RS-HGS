@@ -186,7 +186,7 @@ namespace compare_algorithm
         static int BinarySearch(int[] a, int numToFind)
         {
             {
-
+                a = MergeSortRecursive(a, 0, a.Length - 1);
                 int ub = a.Length - 1;
                 int lb = 0;
                 while (lb < ub)
