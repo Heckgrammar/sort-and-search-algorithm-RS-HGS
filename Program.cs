@@ -61,11 +61,13 @@ namespace compare_algorithm
                     int[] mergesorted = MergeSortRecursive(arr, 0, arr.Length - 1);
                     foreach (int index in mergesorted)
                        { Console.WriteLine(index); }
+                    Console.WriteLine("The array has been sorted");
                     break;
                 case 3:
                     int[] bubblesorted = BubbleSort(arr);
                     foreach (int index in bubblesorted)
                     { Console.WriteLine(index); }
+                    Console.WriteLine("The array has been sorted");
                     break;
                 case 9:
                     Environment.Exit(0);
